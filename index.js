@@ -2,8 +2,6 @@ const express = require('express')
 
 const app = express()
 
-const port = 3000;
-
 const page = `<html>
     <title>Farzad Taghavi</title>
     <h1>Why do comedians love !false?</h1>
@@ -15,6 +13,12 @@ app.get('/', function (req,res) {
     res.send(page)
 })
 
-app.listen(port, () => {
-    console.log(`Listening at http://localhost:${port}`)
-  })
+// use $PORT if it is defined
+// use 3000 if $PORT is not defined
+const port = process.env.PORT || 3000
+
+// start server
+app.listen(
+  port, // might be process.env.PORT or 3000
+  () => console.log(`Listening on :${port}`)
+)
